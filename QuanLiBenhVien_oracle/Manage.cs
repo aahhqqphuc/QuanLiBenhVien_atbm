@@ -13,25 +13,6 @@ namespace QuanLiBenhVien_oracle
             InitializeComponent();
         }
         public string connectString;
-        private void Manage_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void dtgvUser_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void user_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtRoleUser_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void bntLoadUser_Click(object sender, EventArgs e)
         {
@@ -59,10 +40,9 @@ namespace QuanLiBenhVien_oracle
             {
                 MessageBox.Show(ex.Message);
             }
-            
 
-            con.Close();
             con.Dispose();
+            con.Close();
         }
 
         private void bntLoadRoleUser_Click(object sender, EventArgs e)
@@ -111,20 +91,10 @@ namespace QuanLiBenhVien_oracle
                 MessageBox.Show(ex.Message);
             }
 
-
-            con.Close();
             con.Dispose();
+            con.Close();
         }
 
-        private void cbbRole_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbbUser_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void bntRunUser_Click(object sender, EventArgs e)
         {
@@ -170,9 +140,8 @@ namespace QuanLiBenhVien_oracle
                 MessageBox.Show(ex.Message);
             }
 
-
-            con.Close();
             con.Dispose();
+            con.Close();
         }
 
         private void bntRunRole_Click(object sender, EventArgs e)
@@ -210,8 +179,8 @@ namespace QuanLiBenhVien_oracle
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Suceed");
 
-                txtUserName.Text = "";
-                txtUserPass.Text = "";
+                txtRoleName.Text = "";
+                txtRolePass.Text = "";
 
             }
             catch (Exception ex)
@@ -219,9 +188,8 @@ namespace QuanLiBenhVien_oracle
                 MessageBox.Show(ex.Message);
             }
 
-
-            con.Close();
             con.Dispose();
+            con.Close();
         }
 
         private void bntUserGrant_Click(object sender, EventArgs e)
@@ -259,9 +227,8 @@ namespace QuanLiBenhVien_oracle
                 MessageBox.Show(ex.Message);
             }
 
-
-            con.Close();
             con.Dispose();
+            con.Close();
         }
 
         private void bntRoleGrant_Click(object sender, EventArgs e)
@@ -299,9 +266,8 @@ namespace QuanLiBenhVien_oracle
                 MessageBox.Show(ex.Message);
             }
 
-
-            con.Close();
             con.Dispose();
+            con.Close();
         }
 
         private void bntRevoke_Click(object sender, EventArgs e)
@@ -332,9 +298,8 @@ namespace QuanLiBenhVien_oracle
                 MessageBox.Show(ex.Message);
             }
 
-
-            con.Close();
             con.Dispose();
+            con.Close();
         }
 
         private void bntRUGrant_Click(object sender, EventArgs e)
@@ -365,14 +330,8 @@ namespace QuanLiBenhVien_oracle
                 MessageBox.Show(ex.Message);
             }
 
-
-            con.Close();
             con.Dispose();
-        }
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            con.Close();
         }
 
         private void btnLoadLoginLog_Click(object sender, EventArgs e)
@@ -400,9 +359,8 @@ namespace QuanLiBenhVien_oracle
                 MessageBox.Show(ex.Message);
             }
 
-
-            con.Close();
             con.Dispose();
+            con.Close();
         }
 
         private void btnLoadAccessLog_Click(object sender, EventArgs e)
@@ -430,9 +388,8 @@ namespace QuanLiBenhVien_oracle
                 MessageBox.Show(ex.Message);
             }
 
-
-            con.Close();
             con.Dispose();
+            con.Close();
         }
     }
 }
