@@ -11,14 +11,10 @@ namespace QuanLiBenhVien_oracle
             InitializeComponent();
         }
         public OracleConnection con;
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void bntLogin_Click(object sender, EventArgs e)
         {
-            string host = "localhost", port = "1521", sid = "ols_demo",
+            string host = "localhost", port = "1521", sid = "ols",
                    user = txtUsername.Text, password = txtPassword.Text;
 
             string connectString = "Data Source=(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = "
@@ -39,8 +35,6 @@ namespace QuanLiBenhVien_oracle
                 mn.ShowDialog();
                 
                 this.Close();
-
-
             }
             catch(Exception ex)
             {
@@ -48,24 +42,11 @@ namespace QuanLiBenhVien_oracle
             }
             finally
             {
-                con.Close();
                 con.Dispose();
+                con.Close();
             }
-
-            con.Close();
             con.Dispose();
-        }
-
-        private void txtPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-            {
-                bntLogin_Click(sender, e);
-            }
+            con.Close();
         }
     }
 }

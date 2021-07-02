@@ -85,7 +85,6 @@ namespace QuanLiBenhVien_oracle
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(178, 39);
             this.txtPassword.TabIndex = 2;
-            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // bntLogin
             // 
@@ -112,7 +111,6 @@ namespace QuanLiBenhVien_oracle
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng nhập";
-            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

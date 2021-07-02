@@ -884,7 +884,6 @@ namespace QuanLiBenhVien_oracle
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox o;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button bntRevoke;
         private System.Windows.Forms.Label label18;
