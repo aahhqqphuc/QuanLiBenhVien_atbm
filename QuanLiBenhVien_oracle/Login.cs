@@ -18,7 +18,7 @@ namespace QuanLiBenhVien_oracle
 
         private void bntLogin_Click(object sender, EventArgs e)
         {
-            string host = "localhost", port = "1521", sid = "ols",
+            string host = "localhost", port = "1521", sid = "ols_demo",
                    user = txtUsername.Text, password = txtPassword.Text;
 
             string connectString = "Data Source=(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = "

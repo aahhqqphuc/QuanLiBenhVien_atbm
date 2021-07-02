@@ -91,6 +91,14 @@ namespace QuanLiBenhVien_oracle
             this.txtUserPrivilege = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtUserUser = new System.Windows.Forms.TextBox();
+            this.tabLogonLog = new System.Windows.Forms.TabPage();
+            this.btnLoadLoginLog = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.dgvLogonLog = new System.Windows.Forms.DataGridView();
+            this.tabAccessLog = new System.Windows.Forms.TabPage();
+            this.btnLoadAccessLog = new System.Windows.Forms.Button();
+            this.dgvAccessLog = new System.Windows.Forms.DataGridView();
+            this.label21 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.user.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -105,6 +113,10 @@ namespace QuanLiBenhVien_oracle
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabLogonLog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLogonLog)).BeginInit();
+            this.tabAccessLog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAccessLog)).BeginInit();
             this.SuspendLayout();
             // 
             // user
@@ -113,6 +125,8 @@ namespace QuanLiBenhVien_oracle
             this.user.Controls.Add(this.tabPage2);
             this.user.Controls.Add(this.tabPage3);
             this.user.Controls.Add(this.tabPage6);
+            this.user.Controls.Add(this.tabLogonLog);
+            this.user.Controls.Add(this.tabAccessLog);
             this.user.Location = new System.Drawing.Point(-2, 0);
             this.user.Name = "user";
             this.user.SelectedIndex = 0;
@@ -721,6 +735,95 @@ namespace QuanLiBenhVien_oracle
             this.txtUserUser.Size = new System.Drawing.Size(125, 27);
             this.txtUserUser.TabIndex = 0;
             // 
+            // tabLogonLog
+            // 
+            this.tabLogonLog.Controls.Add(this.btnLoadLoginLog);
+            this.tabLogonLog.Controls.Add(this.label20);
+            this.tabLogonLog.Controls.Add(this.dgvLogonLog);
+            this.tabLogonLog.Location = new System.Drawing.Point(4, 29);
+            this.tabLogonLog.Name = "tabLogonLog";
+            this.tabLogonLog.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLogonLog.Size = new System.Drawing.Size(1109, 575);
+            this.tabLogonLog.TabIndex = 7;
+            this.tabLogonLog.Text = "LS Login";
+            this.tabLogonLog.UseVisualStyleBackColor = true;
+            // 
+            // btnLoadLoginLog
+            // 
+            this.btnLoadLoginLog.Location = new System.Drawing.Point(19, 92);
+            this.btnLoadLoginLog.Name = "btnLoadLoginLog";
+            this.btnLoadLoginLog.Size = new System.Drawing.Size(94, 29);
+            this.btnLoadLoginLog.TabIndex = 2;
+            this.btnLoadLoginLog.Text = "Load";
+            this.btnLoadLoginLog.UseVisualStyleBackColor = true;
+            this.btnLoadLoginLog.Click += new System.EventHandler(this.btnLoadLoginLog_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label20.Location = new System.Drawing.Point(380, 32);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(370, 38);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "Lịch sử truy cập người dùng";
+            // 
+            // dgvLogonLog
+            // 
+            this.dgvLogonLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvLogonLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLogonLog.Location = new System.Drawing.Point(119, 92);
+            this.dgvLogonLog.Name = "dgvLogonLog";
+            this.dgvLogonLog.RowHeadersWidth = 51;
+            this.dgvLogonLog.RowTemplate.Height = 29;
+            this.dgvLogonLog.Size = new System.Drawing.Size(894, 367);
+            this.dgvLogonLog.TabIndex = 0;
+            // 
+            // tabAccessLog
+            // 
+            this.tabAccessLog.Controls.Add(this.btnLoadAccessLog);
+            this.tabAccessLog.Controls.Add(this.dgvAccessLog);
+            this.tabAccessLog.Controls.Add(this.label21);
+            this.tabAccessLog.Location = new System.Drawing.Point(4, 29);
+            this.tabAccessLog.Name = "tabAccessLog";
+            this.tabAccessLog.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAccessLog.Size = new System.Drawing.Size(1109, 575);
+            this.tabAccessLog.TabIndex = 8;
+            this.tabAccessLog.Text = "LS Truy cập";
+            this.tabAccessLog.UseVisualStyleBackColor = true;
+            // 
+            // btnLoadAccessLog
+            // 
+            this.btnLoadAccessLog.Location = new System.Drawing.Point(10, 83);
+            this.btnLoadAccessLog.Name = "btnLoadAccessLog";
+            this.btnLoadAccessLog.Size = new System.Drawing.Size(94, 29);
+            this.btnLoadAccessLog.TabIndex = 2;
+            this.btnLoadAccessLog.Text = "Load";
+            this.btnLoadAccessLog.UseVisualStyleBackColor = true;
+            this.btnLoadAccessLog.Click += new System.EventHandler(this.btnLoadAccessLog_Click);
+            // 
+            // dgvAccessLog
+            // 
+            this.dgvAccessLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvAccessLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAccessLog.Location = new System.Drawing.Point(121, 83);
+            this.dgvAccessLog.Name = "dgvAccessLog";
+            this.dgvAccessLog.RowHeadersWidth = 51;
+            this.dgvAccessLog.RowTemplate.Height = 29;
+            this.dgvAccessLog.Size = new System.Drawing.Size(858, 396);
+            this.dgvAccessLog.TabIndex = 1;
+            this.dgvAccessLog.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label21.Location = new System.Drawing.Point(298, 33);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(526, 38);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "Lịch sử truy cập hồ sơ bệnh án trái phép";
+            // 
             // Manage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -752,6 +855,12 @@ namespace QuanLiBenhVien_oracle
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabLogonLog.ResumeLayout(false);
+            this.tabLogonLog.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLogonLog)).EndInit();
+            this.tabAccessLog.ResumeLayout(false);
+            this.tabAccessLog.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAccessLog)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -822,5 +931,13 @@ namespace QuanLiBenhVien_oracle
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TabPage tabLogonLog;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.DataGridView dgvLogonLog;
+        private System.Windows.Forms.TabPage tabAccessLog;
+        private System.Windows.Forms.DataGridView dgvAccessLog;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button btnLoadLoginLog;
+        private System.Windows.Forms.Button btnLoadAccessLog;
     }
 }

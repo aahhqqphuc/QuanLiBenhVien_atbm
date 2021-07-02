@@ -369,5 +369,70 @@ namespace QuanLiBenhVien_oracle
             con.Close();
             con.Dispose();
         }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnLoadLoginLog_Click(object sender, EventArgs e)
+        {
+            OracleConnection con = new OracleConnection();
+            con.ConnectionString = connectString;
+
+            try
+            {
+
+                string sql = "QLHT.xemLogonLog";
+                OracleCommand cmd = new OracleCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new OracleParameter
+                                    ("l_re", OracleDbType.RefCursor, ParameterDirection.ReturnValue));
+                con.Open();
+                OracleDataReader oraReader = cmd.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(oraReader);
+
+                dgvLogonLog.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            con.Close();
+            con.Dispose();
+        }
+
+        private void btnLoadAccessLog_Click(object sender, EventArgs e)
+        {
+            OracleConnection con = new OracleConnection();
+            con.ConnectionString = connectString;
+
+            try
+            {
+
+                string sql = "QLHT.XemHSBNLog";
+                OracleCommand cmd = new OracleCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new OracleParameter
+                                    ("l_re", OracleDbType.RefCursor, ParameterDirection.ReturnValue));
+                con.Open();
+                OracleDataReader oraReader = cmd.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(oraReader);
+
+                dgvAccessLog.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            con.Close();
+            con.Dispose();
+        }
     }
 }
