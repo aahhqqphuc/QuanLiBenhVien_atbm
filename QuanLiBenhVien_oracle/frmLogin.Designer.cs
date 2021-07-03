@@ -1,7 +1,7 @@
 ﻿
-namespace QuanLiBenhVien_oracle
+namespace QuanLiBenhVien
 {
-    partial class Login
+    partial class frmLogin
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,12 +29,12 @@ namespace QuanLiBenhVien_oracle
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Username = new System.Windows.Forms.Label();
             this.Password = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.txtPassWord = new System.Windows.Forms.TextBox();
             this.bntLogin = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -69,22 +69,22 @@ namespace QuanLiBenhVien_oracle
             this.Password.TabIndex = 1;
             this.Password.Text = "Password";
             // 
-            // txtUsername
+            // txtUserName
             // 
-            this.txtUsername.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtUsername.Location = new System.Drawing.Point(467, 44);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(178, 39);
-            this.txtUsername.TabIndex = 1;
+            this.txtUserName.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtUserName.Location = new System.Drawing.Point(467, 44);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(178, 39);
+            this.txtUserName.TabIndex = 1;
             // 
-            // txtPassword
+            // txtPassWord
             // 
-            this.txtPassword.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPassword.Location = new System.Drawing.Point(467, 127);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(178, 39);
-            this.txtPassword.TabIndex = 2;
+            this.txtPassWord.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtPassWord.Location = new System.Drawing.Point(467, 127);
+            this.txtPassWord.Name = "txtPassWord";
+            this.txtPassWord.PasswordChar = '*';
+            this.txtPassWord.Size = new System.Drawing.Size(178, 39);
+            this.txtPassWord.TabIndex = 2;
             // 
             // bntLogin
             // 
@@ -103,8 +103,8 @@ namespace QuanLiBenhVien_oracle
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 261);
             this.Controls.Add(this.bntLogin);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtUsername);
+            this.Controls.Add(this.txtPassWord);
+            this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.Password);
             this.Controls.Add(this.Username);
             this.Controls.Add(this.pictureBox1);
@@ -122,8 +122,8 @@ namespace QuanLiBenhVien_oracle
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label Username;
         private System.Windows.Forms.Label Password;
-        private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.TextBox txtPassWord;
         private System.Windows.Forms.Button bntLogin;
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace QuanLiBenhVien_oracle
+namespace QuanLiBenhVien
 {
     static class Program
     {
@@ -14,7 +14,7 @@ namespace QuanLiBenhVien_oracle
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new frmLogin());
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
-namespace QuanLiBenhVien_oracle
+namespace QuanLiBenhVien
 {
-    partial class Manage
+    partial class frmManage
     {
         /// <summary>
         /// Required designer variable.
@@ -268,7 +268,7 @@ namespace QuanLiBenhVien_oracle
             this.bntRunRole.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.bntRunRole.Location = new System.Drawing.Point(700, 35);
             this.bntRunRole.Name = "bntRunRole";
-            this.bntRunRole.Size = new System.Drawing.Size(94, 29);
+            this.bntRunRole.Size = new System.Drawing.Size(94, 33);
             this.bntRunRole.TabIndex = 11;
             this.bntRunRole.Text = "Thực thi";
             this.bntRunRole.UseVisualStyleBackColor = true;
@@ -358,9 +358,9 @@ namespace QuanLiBenhVien_oracle
             // bntRunUser
             // 
             this.bntRunUser.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.bntRunUser.Location = new System.Drawing.Point(700, 38);
+            this.bntRunUser.Location = new System.Drawing.Point(700, 37);
             this.bntRunUser.Name = "bntRunUser";
-            this.bntRunUser.Size = new System.Drawing.Size(94, 29);
+            this.bntRunUser.Size = new System.Drawing.Size(94, 33);
             this.bntRunUser.TabIndex = 5;
             this.bntRunUser.Text = "Thực thi";
             this.bntRunUser.UseVisualStyleBackColor = true;
@@ -865,15 +865,15 @@ namespace QuanLiBenhVien_oracle
             this.label21.TabIndex = 0;
             this.label21.Text = "Lịch sử truy cập hồ sơ bệnh án trái phép";
             // 
-            // Manage
+            // frmManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1124, 620);
             this.Controls.Add(this.user);
-            this.Name = "Manage";
+            this.Name = "frmManage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Manage";
+            this.Text = "Quản lý";
             this.user.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvUser)).EndInit();

@@ -3,60 +3,57 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 
-
-namespace QuanLiBenhVien_oracle
+namespace QuanLiBenhVien
 {
-    public partial class Manage : Form
+    public partial class frmManage : Form
     {
-        public Manage()
+        public frmManage()
         {
             InitializeComponent();
         }
-        public string connectString;
 
         private void bntLoadUser_Click(object sender, EventArgs e)
         {
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = connectString;
-         
+            Provider provider = new Provider();
+            provider.GetConnect();
+
             try
             {
-                
                 string sql = "ViewListOfUser";
-                OracleCommand cmd = new OracleCommand(sql, con);
+                OracleCommand cmd = new OracleCommand(sql, provider.Connect);
                 cmd.CommandType = CommandType.StoredProcedure;
                 OracleParameter refcursor = new OracleParameter("_RESULTS", OracleDbType.RefCursor);
                 refcursor.Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(refcursor);
 
-                con.Open();
-                OracleDataReader oraReader = cmd.ExecuteReader();
+                provider.Connect.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
                 DataTable dt = new DataTable();
-                dt.Load(oraReader);
-            
+                dt.Load(reader);
                 dtgvUser.DataSource = dt;
+                reader.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            con.Dispose();
-            con.Close();
+            finally
+            {
+                provider.DisConnect();
+            }
         }
 
         private void bntLoadRoleUser_Click(object sender, EventArgs e)
         {
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = connectString;
+            Provider provider = new Provider();
+            provider.GetConnect();
+
             try
             {
-                OracleCommand cmd = new OracleCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
                 string sql = "";
                 string param = "";
 
-                if(txtUser.Text != "")
+                if (txtUser.Text != "")
                 {
                     sql = "ViewPrivilegesUser";
                     param = txtUser.Text;
@@ -66,44 +63,43 @@ namespace QuanLiBenhVien_oracle
                     sql = "ViewPrivilegesRole";
                     param = txtRole.Text;
                 }
-                cmd.Connection = con;
-                cmd.CommandText = sql;
 
+                OracleCommand cmd = new OracleCommand(sql, provider.Connect);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("user/role", OracleDbType.Varchar2).Value = param;
-
                 OracleParameter refcursor = new OracleParameter("_RESULTS", OracleDbType.RefCursor);
                 refcursor.Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(refcursor);
 
-                con.Open();
-                OracleDataReader oraReader = cmd.ExecuteReader();
+                provider.Connect.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
                 DataTable dt = new DataTable();
-                dt.Load(oraReader);
-      
-
+                dt.Load(reader);
                 dtgvRoleUser.DataSource = dt;
-                txtUser.Text = "";
-                txtRole.Text = "";
+                reader.Close();
+
+                txtUser.Clear();
+                txtRole.Clear();
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            con.Dispose();
-            con.Close();
+            finally
+            {
+                provider.DisConnect();
+            }
         }
 
 
         private void bntRunUser_Click(object sender, EventArgs e)
         {
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = connectString;
+            Provider provider = new Provider();
+            provider.GetConnect();
+
             try
             {
-                OracleCommand cmd = new OracleCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
                 string sql = "";
 
                 if (cbbUser.Text == "Create")
@@ -118,40 +114,40 @@ namespace QuanLiBenhVien_oracle
                 {
                     sql = "UpdateUser";
                 }
-                cmd.Connection = con;
-                cmd.CommandText = sql;
 
+                OracleCommand cmd = new OracleCommand(sql, provider.Connect);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("name", OracleDbType.Varchar2).Value = txtUserName.Text;
+
                 if (cbbUser.Text != "Drop")
                 {
                     cmd.Parameters.Add("pass", OracleDbType.Varchar2).Value = txtUserPass.Text;
                 }
 
-                con.Open();
+                provider.Connect.Open();
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Suceed");
 
-                txtUserName.Text = "";
-                txtUserPass.Text = "";
-
+                txtUserName.Clear();
+                txtUserPass.Clear();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            con.Dispose();
-            con.Close();
+            finally
+            {
+                provider.DisConnect();
+            }
         }
 
         private void bntRunRole_Click(object sender, EventArgs e)
         {
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = connectString;
+            Provider provider = new Provider();
+            provider.GetConnect();
+
             try
             {
-                OracleCommand cmd = new OracleCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
                 string sql = "";
 
                 if (cbbRole.Text == "Create")
@@ -166,230 +162,227 @@ namespace QuanLiBenhVien_oracle
                 {
                     sql = "UpdateRole";
                 }
-                cmd.Connection = con;
-                cmd.CommandText = sql;
 
+                OracleCommand cmd = new OracleCommand(sql, provider.Connect);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("name", OracleDbType.Varchar2).Value = txtRoleName.Text;
+
                 if (cbbRole.Text != "Drop")
                 {
                     cmd.Parameters.Add("pass", OracleDbType.Varchar2).Value = txtRolePass.Text;
                 }
 
-                con.Open();
+                provider.Connect.Open();
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Suceed");
 
                 txtRoleName.Text = "";
                 txtRolePass.Text = "";
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            con.Dispose();
-            con.Close();
+            finally
+            {
+                provider.DisConnect();
+            }
         }
 
         private void bntUserGrant_Click(object sender, EventArgs e)
         {
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = connectString;
+            Provider provider = new Provider();
+            provider.GetConnect();
+
             try
             {
-                OracleCommand cmd = new OracleCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
                 string sql = "GrantObject";
                 int check = (cbOption.Checked == false) ? 0 : 1;
-                cmd.Connection = con;
-                cmd.CommandText = sql;
-
+                OracleCommand cmd = new OracleCommand(sql, provider.Connect);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("privilege", OracleDbType.Varchar2).Value = txtUserPrivilege.Text;
                 cmd.Parameters.Add("table", OracleDbType.Varchar2).Value = txtUserTable.Text;
                 cmd.Parameters.Add("column", OracleDbType.Varchar2).Value = txtUserColumn.Text;
                 cmd.Parameters.Add("user", OracleDbType.Varchar2).Value = txtUserUser.Text;
                 cmd.Parameters.Add("check", OracleDbType.Int16).Value = check;
 
-
-                con.Open();
+                provider.Connect.Open();
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Suceed");
-                txtUserPrivilege.Text = "";
-                txtUserTable.Text = "";
-                txtUserColumn.Text = "";
-                txtUserUser.Text = "";
-                cbOption.Checked = false;
 
+                txtUserPrivilege.Clear();
+                txtUserTable.Clear();
+                txtUserColumn.Clear();
+                txtUserUser.Clear();
+                cbOption.Checked = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            con.Dispose();
-            con.Close();
+            finally
+            {
+                provider.DisConnect();
+            }
         }
 
         private void bntRoleGrant_Click(object sender, EventArgs e)
         {
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = connectString;
+            Provider provider = new Provider();
+            provider.GetConnect();
+
             try
             {
-                OracleCommand cmd = new OracleCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
                 string sql = "GrantObject";
                 int check = (cbOption.Checked == false) ? 0 : 1;
-                cmd.Connection = con;
-                cmd.CommandText = sql;
-
-
+                OracleCommand cmd = new OracleCommand(sql, provider.Connect);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("privilege", OracleDbType.Varchar2).Value = txtRolePrivilege.Text;
                 cmd.Parameters.Add("table", OracleDbType.Varchar2).Value = txtRoleTable.Text;
                 cmd.Parameters.Add("column", OracleDbType.Varchar2).Value = txtRoleColumn.Text;
                 cmd.Parameters.Add("role", OracleDbType.Varchar2).Value = txtRoleRole.Text;
                 cmd.Parameters.Add("check", OracleDbType.Int16).Value = 0;
 
-                con.Open();
+                provider.Connect.Open();
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Suceed");
-                txtRolePrivilege.Text = "";
-                txtRoleTable.Text = "";
-                txtRoleColumn.Text = "";
-                txtRoleRole.Text = "";
-                cbOption.Checked = false;
 
+                txtRolePrivilege.Clear();
+                txtRoleTable.Clear();
+                txtRoleColumn.Clear();
+                txtRoleRole.Clear();
+                cbOption.Checked = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            con.Dispose();
-            con.Close();
+            finally
+            {
+                provider.DisConnect();
+            }
         }
 
         private void bntRevoke_Click(object sender, EventArgs e)
         {
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = connectString;
-            try
-            {
-                OracleCommand cmd = new OracleCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                string sql = "RevokeObject";
-                cmd.Connection = con;
-                cmd.CommandText = sql;
+            Provider provider = new Provider();
+            provider.GetConnect();
 
+            try
+            {          
+                string sql = "RevokeObject";
+                OracleCommand cmd = new OracleCommand(sql, provider.Connect);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("privilege", OracleDbType.Varchar2).Value = txtRevokePrivilege.Text;
                 cmd.Parameters.Add("table", OracleDbType.Varchar2).Value = txtRevokeTable.Text;
                 cmd.Parameters.Add("role/user", OracleDbType.Varchar2).Value = txtRevokeRoleUser.Text;
 
-                con.Open();
+                provider.Connect.Open();
                 cmd.ExecuteNonQuery();
-                txtRevokePrivilege.Text = "";
-                txtRevokeTable.Text = "";
-                txtRevokeRoleUser.Text = "";
                 MessageBox.Show("Suceed");
+
+                txtRevokePrivilege.Clear();
+                txtRevokeTable.Clear();
+                txtRevokeRoleUser.Clear();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            con.Dispose();
-            con.Close();
+            finally
+            {
+                provider.DisConnect();
+            }
         }
 
         private void bntRUGrant_Click(object sender, EventArgs e)
         {
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = connectString;
+            Provider provider = new Provider();
+            provider.GetConnect();
+
             try
-            {
-                OracleCommand cmd = new OracleCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
+            {            
                 string sql = "GrantRoleToUser";
-                cmd.Connection = con;
-                cmd.CommandText = sql;
-
-
+                OracleCommand cmd = new OracleCommand(sql, provider.Connect);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("user", OracleDbType.Varchar2).Value = txtRUUser.Text;
                 cmd.Parameters.Add("role", OracleDbType.Varchar2).Value = txtRURole.Text;
 
-                con.Open();
+                provider.Connect.Open();
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Suceed");
-                txtRUUser.Text = "";
-                txtRURole.Text = "";
-               
+
+                txtRUUser.Clear();
+                txtRURole.Clear();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            con.Dispose();
-            con.Close();
+            finally
+            {
+                provider.DisConnect();
+            }
         }
 
         private void btnLoadLoginLog_Click(object sender, EventArgs e)
         {
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = connectString;
+            Provider provider = new Provider();
+            provider.GetConnect();
 
             try
             {
-
                 string sql = "QLHT.xemLogonLog";
-                OracleCommand cmd = new OracleCommand(sql, con);
+                OracleCommand cmd = new OracleCommand(sql, provider.Connect);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new OracleParameter
                                     ("l_re", OracleDbType.RefCursor, ParameterDirection.ReturnValue));
-                con.Open();
-                OracleDataReader oraReader = cmd.ExecuteReader();
-                DataTable dt = new DataTable();
-                dt.Load(oraReader);
 
+                provider.Connect.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(reader);
                 dgvLogonLog.DataSource = dt;
+                reader.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            con.Dispose();
-            con.Close();
+            finally
+            {
+                provider.DisConnect();
+            }
         }
 
         private void btnLoadAccessLog_Click(object sender, EventArgs e)
         {
-            OracleConnection con = new OracleConnection();
-            con.ConnectionString = connectString;
+            Provider provider = new Provider();
+            provider.GetConnect();
 
             try
             {
-
                 string sql = "QLHT.XemHSBNLog";
-                OracleCommand cmd = new OracleCommand(sql, con);
+                OracleCommand cmd = new OracleCommand(sql, provider.Connect);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new OracleParameter
                                     ("l_re", OracleDbType.RefCursor, ParameterDirection.ReturnValue));
-                con.Open();
-                OracleDataReader oraReader = cmd.ExecuteReader();
-                DataTable dt = new DataTable();
-                dt.Load(oraReader);
 
+                provider.Connect.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(reader);
                 dgvAccessLog.DataSource = dt;
+                reader.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            con.Dispose();
-            con.Close();
+            finally
+            {
+                provider.DisConnect();
+            }
         }
     }
 }
